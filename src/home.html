@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aggie Hoops Analytics – Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+        }
+
+        .nav-pill {
+            padding: 0.45rem 1.1rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-weight: 600;
+            border: 1px solid rgba(148,163,184,0.4);
+            transition: all 0.18s ease-out;
+        }
+
+        .nav-pill:hover {
+            border-color: #fbbf24;
+            color: #fbbf24;
+        }
+
+        .hero-btn {
+            padding: 0.85rem 1.7rem;
+            border-radius: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            box-shadow: 0 24px 60px rgba(15,23,42,0.9);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#020617] text-gray-100">
+
+<div class="relative min-h-screen overflow-hidden flex flex-col">
+
+    <!-- Fake background "live game" layer -->
+    <div class="pointer-events-none absolute inset-0 -z-10">
+        <!-- Blur gradient over everything -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-slate-900/80 to-black opacity-95"></div>
+
+        <!-- Moving light + lines (simple ESPN-ish vibes) -->
+        <div class="absolute -right-40 top-10 w-[520px] h-[520px] bg-blue-500/30 rounded-full blur-3xl"></div>
+        <div class="absolute -left-40 bottom-0 w-[520px] h-[520px] bg-yellow-400/20 rounded-full blur-3xl"></div>
+
+        <!-- Fake court lines -->
+        <svg class="absolute inset-0 w-full h-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="courtGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#courtGrid)"/>
+        </svg>
+    </div>
+
+    <!-- Top bar -->
+    <header class="w-full px-5 md:px-10 py-4 flex items-center justify-between relative z-10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-200 flex items-center justify-center text-xs font-extrabold text-black shadow-lg">
+                A&amp;T
+            </div>
+            <div class="flex flex-col">
+                <span class="text-[0.65rem] uppercase tracking-[0.22em] text-gray-400">
+                    North Carolina A&amp;T
+                </span>
+                <span class="text-sm font-semibold tracking-wide text-gray-100">
+                    Aggie Hoops Analytics
+                </span>
+            </div>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-3 text-[0.65rem]">
+            <!-- HOME first -->
+            <a href="home.html" class="nav-pill border-yellow-400/70 text-yellow-300 bg-yellow-400/5">
+                Home
+            </a>
+            <!-- This points to your teammate’s stats page (index.html) -->
+            <a href="index.html" class="nav-pill text-gray-300">
+                Team Stats
+            </a>
+            <a href="player-dashboard.html" class="nav-pill text-gray-300">
+                Player Dashboard
+            </a>
+            <a href="strategy-hub.html" class="nav-pill text-gray-300">
+                Strategy Lab
+            </a>
+        </nav>
+    </header>
+
+    <!-- Mobile nav -->
+    <div class="md:hidden relative z-10 px-5 pb-3">
+        <div class="flex gap-2 flex-wrap text-[0.62rem]">
+            <a href="home.html" class="nav-pill border-yellow-400/70 text-yellow-300 bg-yellow-400/5">
+                Home
+            </a>
+            <a href="index.html" class="nav-pill text-gray-300">
+                Team Stats
+            </a>
+            <a href="player-dashboard.html" class="nav-pill text-gray-300">
+                Players
+            </a>
+            <a href="strategy-hub.html" class="nav-pill text-gray-300">
+                Strategy
+            </a>
+        </div>
+    </div>
+
+    <!-- Center hero -->
+    <main class="flex-1 flex items-center justify-center relative z-10 px-6 pb-10">
+        <div class="max-w-5xl mx-auto flex flex-col items-center text-center gap-8">
+            <!-- Badge -->
+            <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                <span class="inline-flex w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-[0.63rem] uppercase tracking-[0.22em] text-gray-300">
+                    Live • Men&apos;s &amp; Women&apos;s Basketball Analytics Hub
+                </span>
+            </div>
+
+            <!-- Big title in the middle -->
+            <div class="space-y-4">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">
+                    <span class="block text-yellow-400 drop-shadow-[0_0_18px_rgba(250,204,21,0.9)]">
+                        Aggie Hoops
+                    </span>
+                    <span class="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/95 mt-1">
+                        Data &amp; Film Room
+                    </span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base text-gray-300">
+                    One home for <span class="text-yellow-300 font-semibold">player bios, live box scores, advanced metrics,</span>
+                    and <span class="text-blue-300 font-semibold">game-plan strategies</span> for N.C. A&amp;T Men’s &amp; Women’s Basketball.
+                </p>
+            </div>
+
+            <!-- CTA buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mt-2">
+                <a href="index.html" class="hero-btn bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
+                    <span>Open Team Stats Hub</span>
+                    <span class="text-xs bg-white/10 rounded-full px-2 py-[2px] border border-white/20">
+                        Box Scores · Graphs
+                    </span>
+                </a>
+
+                <a href="player-dashboard.html" class="hero-btn bg-white/5 text-gray-100 border border-white/15">
+                    <span>View Player Dashboards</span>
+                    <span class="text-xs text-yellow-300">
+                        Bios · Advanced Splits
+                    </span>
+                </a>
+            </div>
+
+            <!-- Quick tiles -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mt-6 text-left">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+                    <p class="text-[0.65rem] uppercase tracking-[0.22em] text-gray-400 mb-1">
+                        Coaches
+                    </p>
+                    <p class="text-sm text-gray-100 font-semibold">
+                        Quickly scout <span class="text-yellow-300">strengths, weaknesses, and matchups</span> by position.
+                    </p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+                    <p class="text-[0.65rem] uppercase tracking-[0.22em] text-gray-400 mb-1">
+                        Players
+                    </p>
+                    <p class="text-sm text-gray-100 font-semibold">
+                        Track your <span class="text-blue-300">game-by-game performance</span> and usage trends.
+                    </p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+                    <p class="text-[0.65rem] uppercase tracking-[0.22em] text-gray-400 mb-1">
+                        Fans
+                    </p>
+                    <p class="text-sm text-gray-100 font-semibold">
+                        Explore interactive graphs, leaderboards, and <span class="text-emerald-300">impact metrics.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
