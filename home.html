@@ -503,6 +503,7 @@
 <div class="video-overlay"></div>
 
 <header class="top-bar">
+  <!-- LEFT: Logo -->
   <div class="logo-lockup">
     <img
       src="https://raw.githubusercontent.com/AJThomasNCAT/webimages/main/NC_A%26T_Logo_Icon_2C.png"
@@ -512,12 +513,72 @@
     <span class="site-title">Aggie Hoops Analytics</span>
   </div>
 
-  <nav class="nav-group">
-    <a href="welcome.html" class="nav-pill">Welcome</a>
-    <a href="home.html" class="nav-pill nav-active">Aggie Analytics</a>
-    <a href="strategy-lab.html" class="nav-pill">Strategy Lab</a>
-  </nav>
+  <!-- RIGHT: Nav + Actions -->
+  <div class="flex items-center gap-5">
+
+    <!-- Navigation -->
+    <nav class="nav-group">
+      <a href="home.html" class="nav-pill nav-active">Home</a>
+      <a href="strategy-lab.html" class="nav-pill">Strategy Lab</a>
+    </nav>
+
+    <!-- Notifications -->
+    <button
+      id="notifBtn"
+      class="relative h-9 w-9 rounded-full
+             bg-slate-900/70 border border-slate-600
+             flex items-center justify-center
+             hover:border-aggie-gold transition"
+      title="Notifications"
+    >
+      🔔
+      <span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500"></span>
+    </button>
+    <!-- ================= NOTIFICATION MODAL ================= -->
+    <div
+      id="notifModal"
+      class="fixed inset-0 hidden z-[9999] flex items-center justify-center
+         bg-black/70 backdrop-blur-sm"
+    >
+
+      <div
+        class="bg-gradient-to-br from-slate-900 to-slate-800
+           border border-slate-600 rounded-2xl
+           shadow-2xl p-6 w-[90%] max-w-sm text-center"
+      >
+        <h2 class="text-lg font-bold text-yellow-400 mb-2">
+          Notifications
+        </h2>
+
+        <p class="text-sm text-gray-300 mb-4">
+          🚧 Coming soon!
+          <br />
+          Game alerts, uploads, and updates will appear here.
+        </p>
+
+        <button
+          id="closeNotif"
+          class="mt-2 px-4 py-2 rounded-full
+             bg-yellow-400 text-black text-xs font-bold uppercase
+             hover:bg-yellow-300 transition"
+        >
+          Got it
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Login -->
+    <button
+      id="loginBtn"
+      class="nav-pill nav-pill-small"
+    >
+      Login
+    </button>
+
+  </div>
 </header>
+
 
 <main class="hero">
   <!-- LEFT: Title, actions, quick metrics -->
@@ -843,19 +904,6 @@
     </div>
   </div>
 </section>
-<!-- ============================= -->
-<!-- ⭐ BOTTOM GOLD BUTTON -->
-<!-- ============================= -->
-<div class="flex justify-center mt-20 mb-10">
-  <a href="strategy-lab.html"
-     class="px-10 py-4 rounded-full font-extrabold text-lg tracking-wider
-            bg-gradient-to-br from-aggie-gold to-yellow-600 text-black
-            shadow-[0_0_35px_rgba(253,185,39,0.55)]
-            hover:shadow-[0_0_55px_rgba(253,185,39,0.85)]
-            hover:-translate-y-1 transition-all duration-300">
-    Go to Strategy Lab →
-  </a>
-</div>
 
 <footer>
   NC A&amp;T Aggie Hoops Analytics • Internal demo tool – not an official athletics site.
@@ -1433,6 +1481,228 @@
     });
   };
 </script>
+<!-- ======================
+     LOGIN / SIGNUP MODAL
+     ====================== -->
+<div id="loginModal"
+     class="fixed inset-0 hidden z-50 flex items-center justify-center
+            bg-black/70 backdrop-blur-sm">
+
+  <div class="relative w-[92%] max-w-md rounded-2xl
+              bg-gradient-to-br from-purple-800/70 to-indigo-800/70
+              border border-white/20
+              shadow-[0_30px_120px_rgba(168,85,247,0.45)]
+              backdrop-blur-xl p-8 text-white">
+
+    <!-- CLOSE -->
+    <button id="closeLogin"
+            class="absolute top-4 right-4 text-gray-300 hover:text-white text-lg">
+      ✕
+    </button>
+
+    <!-- STEP 1: ROLE -->
+    <div id="roleStep">
+      <h2 class="text-xl font-bold text-center mb-6">Select Your Role</h2>
+
+      <div class="grid grid-cols-2 gap-4">
+        <button data-role="coach"
+                class="roleBtn py-3 rounded-xl bg-aggie-gold text-black font-bold hover:brightness-110 transition">
+          Coach
+        </button>
+        <button data-role="player"
+                class="roleBtn py-3 rounded-xl bg-indigo-400 text-black font-bold hover:brightness-110 transition">
+          Player
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: LOGIN / SIGN UP -->
+    <div id="formStep" class="hidden">
+
+      <h2 id="roleTitle"
+          class="text-lg font-bold text-center mb-1 uppercase tracking-wider"></h2>
+
+      <p id="modeText" class="text-center text-xs text-gray-300 mb-5">
+        Login to your account
+      </p>
+
+      <!-- USERNAME -->
+      <label class="text-xs uppercase tracking-wide">Username or Email</label>
+      <input id="usernameInput"
+             class="w-full mt-1 mb-1 rounded-full px-5 py-3
+                bg-white/10 border border-white/20
+                placeholder-gray-300"
+             placeholder="Username or Email" />
+      <p id="usernameHint" class="text-xs text-gray-300 mb-3"></p>
+
+      <!-- PASSWORD -->
+      <label class="text-xs uppercase tracking-wide">Password</label>
+      <input id="passwordInput"
+             type="password"
+             class="w-full mt-1 mb-1 rounded-full px-5 py-3
+                bg-white/10 border border-white/20
+                placeholder-gray-300"
+             placeholder="Password" />
+      <p id="passwordHint" class="text-xs text-gray-300 mb-3"></p>
+
+      <!-- REMEMBER ME -->
+      <label class="flex items-center gap-2 text-xs text-gray-300 mb-4">
+        <input id="rememberMe" type="checkbox" class="accent-aggie-gold">
+        Remember my username
+      </label>
+
+      <button id="submitLogin"
+              disabled
+              class="w-full py-3 rounded-full bg-gray-500 text-black
+                 font-bold uppercase tracking-widest opacity-50">
+        Continue
+      </button>
+
+      <!-- TOGGLE -->
+      <p class="text-center text-xs text-gray-300 mt-5">
+        <span id="toggleText">New user?</span>
+        <span id="toggleMode"
+              class="text-aggie-gold font-semibold cursor-pointer hover:underline">
+      Create an account
+    </span>
+      </p>
+
+    </div>
+
+
+  </div>
+</div>
+<script>
+  const loginBtn = document.getElementById("loginBtn");
+  const loginModal = document.getElementById("loginModal");
+  const closeLogin = document.getElementById("closeLogin");
+
+  const roleStep = document.getElementById("roleStep");
+  const formStep = document.getElementById("formStep");
+  const roleTitle = document.getElementById("roleTitle");
+  const modeText = document.getElementById("modeText");
+
+  const usernameInput = document.getElementById("usernameInput");
+  const passwordInput = document.getElementById("passwordInput");
+  const usernameHint = document.getElementById("usernameHint");
+  const passwordHint = document.getElementById("passwordHint");
+  const rememberMe = document.getElementById("rememberMe");
+  const submitBtn = document.getElementById("submitLogin");
+
+  const toggleMode = document.getElementById("toggleMode");
+  const toggleText = document.getElementById("toggleText");
+
+  let selectedRole = "";
+  let isSignup = false;
+
+  // OPEN MODAL
+  loginBtn.onclick = () => {
+    loginModal.classList.remove("hidden");
+    roleStep.classList.remove("hidden");
+    formStep.classList.add("hidden");
+
+    // load remembered username
+    const savedUser = localStorage.getItem("savedUsername");
+    if (savedUser) usernameInput.value = savedUser;
+  };
+
+  closeLogin.onclick = () => loginModal.classList.add("hidden");
+
+  // ROLE SELECT
+  document.querySelectorAll(".roleBtn").forEach(btn => {
+    btn.onclick = () => {
+      selectedRole = btn.dataset.role;
+      roleTitle.textContent = `${selectedRole.toUpperCase()} ${isSignup ? "SIGN UP" : "LOGIN"}`;
+      roleStep.classList.add("hidden");
+      formStep.classList.remove("hidden");
+    };
+  });
+
+  // TOGGLE LOGIN / SIGNUP
+  toggleMode.onclick = () => {
+    isSignup = !isSignup;
+    roleTitle.textContent = `${selectedRole.toUpperCase()} ${isSignup ? "SIGN UP" : "LOGIN"}`;
+    modeText.textContent = isSignup
+      ? "Create a new account"
+      : "Login to your account";
+    toggleText.textContent = isSignup ? "Already have an account?" : "New user?";
+    toggleMode.textContent = isSignup ? "Login" : "Create an account";
+    submitBtn.textContent = isSignup ? "Create Account" : "Continue";
+  };
+
+  // VALIDATION
+  function validate() {
+    const userVal = usernameInput.value.trim();
+    const userOk =
+      /^[a-zA-Z0-9_]{4,15}$/.test(userVal) ||
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userVal);
+
+    usernameHint.textContent = userOk
+      ? "✔ Valid username or email"
+      : "❌ 4–15 chars OR valid email";
+
+    const passVal = passwordInput.value;
+    const passOk =
+      passVal.length >= 8 &&
+      /[A-Z]/.test(passVal) &&
+      /[0-9]/.test(passVal) &&
+      /[^A-Za-z0-9]/.test(passVal);
+
+    passwordHint.textContent = passOk
+      ? "✔ Strong password"
+      : "❌ 8+ chars, uppercase, number, symbol";
+
+    submitBtn.disabled = !(userOk && passOk);
+    submitBtn.classList.toggle("opacity-50", submitBtn.disabled);
+  }
+
+  usernameInput.oninput = validate;
+  passwordInput.oninput = validate;
+
+  // SUBMIT
+  submitBtn.onclick = () => {
+    if (rememberMe.checked) {
+      localStorage.setItem("savedUsername", usernameInput.value);
+    } else {
+      localStorage.removeItem("savedUsername");
+    }
+
+    localStorage.setItem("userRole", selectedRole);
+
+    alert(
+      isSignup
+        ? `Account created for ${selectedRole}`
+        : `Logged in as ${selectedRole}`
+    );
+
+    loginModal.classList.add("hidden");
+  };
+</script>
+<script>
+  const notifBtn = document.getElementById("notifBtn");
+  const notifModal = document.getElementById("notifModal");
+  const closeNotif = document.getElementById("closeNotif");
+
+  if (notifBtn) {
+    notifBtn.addEventListener("click", () => {
+      notifModal.classList.remove("hidden");
+    });
+  }
+
+  if (closeNotif) {
+    closeNotif.addEventListener("click", () => {
+      notifModal.classList.add("hidden");
+    });
+  }
+
+  // close when clicking outside
+  notifModal?.addEventListener("click", (e) => {
+    if (e.target === notifModal) {
+      notifModal.classList.add("hidden");
+    }
+  });
+</script>
+
 
 </body>
 </html>
